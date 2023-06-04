@@ -21,12 +21,22 @@ const DonutChart = (props) => {
       console.log("Donut color",donotColors) 
       console.log("Donut data",score)
       }).catch(err => console.log(err)); 
+      
   },[score,donotColors]);
+
+  useEffect(()=>{
+    
+    if(score && donotColors)
+    {
+      drawCanvas()
+    }
+  },[score,donotColors])
 
   function drawCanvas(){
     
   const ctx = chartRef.current.getContext('2d');
-  ctx.clearRect(0, 0, chartRef.width, chartRef.height);
+  ctx.textBaseline = 'middle';
+  ctx.clearRect(0, 0, ctx.canvas.width , ctx.canvas.height );
     //#52FF33
     //const data = [props.score,100-props.score];
     const data = score;
@@ -50,6 +60,7 @@ const DonutChart = (props) => {
       ctx.strokeStyle = colors[i];
       ctx.stroke();
       startAngle = endAngle;
+      
     }
     const textX = ctx.canvas.width / 2.1;  // X-coordinate for centered text position
     const textY = ctx.canvas.height / 2 ;
@@ -61,10 +72,10 @@ const DonutChart = (props) => {
       ctx.fillText(text, textX, textY); // Draw th
     }
 
-    if(score && donotColors)
-    {
-      drawCanvas()
-    }
+    // if(score && donotColors)
+    // {
+    //   drawCanvas()
+    // }
 
   
   
