@@ -4,7 +4,7 @@ import './core.css'
 function GeneralInformationPanel() {
   return (
     <>
-    <div className='col-md-4'>
+    <div className='justify-content-center pt-1'>
     <div >
                     <p class="text-center gi-section-heading">General information</p>
 

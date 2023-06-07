@@ -9,28 +9,23 @@ import SevenScorePanel from './SevenScorePanel';
 function SubCard(props) {
     
   return (
-    <div className='container-fluid'>
-      <div className='row'>
-      <StockScorePanel name={props.data[0].name} score={props.data[0].stockscrore}/>
-      <SevenScorePanel name={props.data[0].name}/>
+    <div className='container-fluid justify-content-center'>
       
-      </div>
-      <div className='row'>
+      <StockScorePanel name={props.data[0].name} score={props.data[0].stockscrore}/>
       <GeneralInformationPanel/>
-      </div>
+      {/* <SevenScorePanel name={props.data[0].name}/> */}
 
+      <h5 className="text-center mb-0 pt-3">StockScore is derived from following Key-Scores.</h5>
+      <h5 className="text-center mb-0 pb-3">Click any Score to know its constituents. </h5>
 
+      <DonutChart score={props.data[0].growth} />
+      <DonutChart score={props.data[0].cfo_g} />
+      <DonutChart score={props.data[0].fcf_g} />
+      <DonutChart score={props.data[0].sales_g} />
+      <DonutChart score={props.data[0].worth_g} />
+      <DonutChart score={props.data[0].yoy_profit} />
+      <DonutChart score={props.data[0].yoy_sales} />
 
-    {/* <h1>{scores.scores[0].name}</h1>
-    <h1>{scores.scores[0].fcf}</h1>
-    <h1>{scores.scores[0].cfo}</h1>
-    <h1>{scores.scores[0].profit_ttm}</h1>
-    <h1>{scores.scores[0].profit}</h1>
-    <h1>{scores.scores[0].sales}</h1> */}
-    
-    
-
-    
     </div>
   )
 }

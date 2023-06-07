@@ -18,8 +18,7 @@ const DonutChart = (props) => {
       
       setScore([props.score,100-props.score])
       setDonotColors([donutColor,'#E0E4DF'])
-      console.log("Donut color",donotColors) 
-      console.log("Donut data",score)
+      
       }).catch(err => console.log(err)); 
       
   },[score,donotColors]);
@@ -37,12 +36,9 @@ const DonutChart = (props) => {
   const ctx = chartRef.current.getContext('2d');
   ctx.textBaseline = 'middle';
   ctx.clearRect(0, 0, ctx.canvas.width , ctx.canvas.height );
-    //#52FF33
-    //const data = [props.score,100-props.score];
-    const data = score;
-    // console.log("Donut color before colors",donutColor)
     
-    //const colors = ['#52FF33', '#E0E4DF'];
+    const data = score;
+    
     const colors = donotColors;
     
     const totalValue = data.reduce((sum, value) => sum + value, 0);
@@ -63,19 +59,16 @@ const DonutChart = (props) => {
       
     }
     const textX = ctx.canvas.width / 2.1;  // X-coordinate for centered text position
-    const textY = ctx.canvas.height / 2 ;
+    const textY = ctx.canvas.height / 1.94 ;
     const text = String(score[0]); // Text to display (convert to string if necessary)
     ctx.fillStyle = '#000'; // Set the text color
-      ctx.font = '42px Arial'; // Set the font properties
+      ctx.font = '40px Arial'; // Set the font properties
       ctx.textAlign = 'center'; // Center align the text horizontally
     ctx.textBaseline = 'middle';
       ctx.fillText(text, textX, textY); // Draw th
     }
 
-    // if(score && donotColors)
-    // {
-    //   drawCanvas()
-    // }
+    
 
   
   

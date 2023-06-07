@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import SubCard from './SubCard';
-import { getCompanyByCode, getStockByName } from '../admin/helper/adminapicalls';
+import { getData, getStockByName } from '../admin/helper/adminapicalls';
 
 
 
 
 
 function Card() {
-    const [companyCode, setCompanyCode] = useState("");
+    const [companyCode, setCompanyCode] = useState(null);
     const [error, setError] = useState(null)
     const [display, setDisplay] = useState("");
     const [dropList, setdropList] = useState(null)
@@ -26,14 +26,20 @@ function Card() {
             }).catch(err => console.log(err));
     }
 
-    const handleSubmit = (event)=>{
-        event.preventDefault();
-        setCompanyCode(event.target.value)
-        getCompanyByCode(companyCode).then(data => {
-          console.log(data)
+    const handleSubmit = (name)=>{
+      
+        // event.preventDefault();
+        
+        setCompanyCode(name)
+        
+        getData(name).then(data => {
+          console.log("Data from getData API",data)
               setDisplay(<SubCard data={data}/>);
             }).catch(err => console.log(err));
-        setdropList(null)    
+        setdropList(null)  
+        console.log(display)
+           
+          
     }
 
     
@@ -41,18 +47,19 @@ function Card() {
   return (
     <div >
         <div >
-        <form onSubmit={handleSubmit}>
+        {/* onSubmit={handleSubmit} */}
+        <form>
         <div class="input-group mt-2">
         <input type="text" 
         value={companyCode}
         onChange={(e) => onInputEntry(e.target.value)}
         class="form-control" placeholder="Search Company" aria-label="Company name" aria-describedby="basic-addon2"/>
-        <input class="input-group-text" id="basic-addon2" type="submit" />
+        
         
         </div>
         <div className="dropdown">
         <ul className="px-0 my-0">
-          { dropList && dropList.map((item)=><li onClick={()=>{setCompanyCode(item.name)}}>{item.name}</li>)}
+          { dropList && dropList.map((item)=><li onClick={()=>handleSubmit(item.name)}>{item.name}</li>)}
         </ul>
         </div>
         </form>

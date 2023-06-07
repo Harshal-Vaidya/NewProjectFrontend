@@ -18,20 +18,20 @@ function SevenScorePanel(props) {
   }, [props.name]); 
 
   
-  
+ 
 
   
   
 
   return (
     <>
-    <div class="col-md-8 pt-2 mt-sm-0">
+    <div class="justify-content-center pt-1">
                 <h5 className="text-center mb-0">StockScore is derived from following Key-Scores.</h5>
                 <h5 className="text-center mb-0">Click any Score to know its constituents. </h5>
                 
                 {sevenScore &&
-                <div className="seven-scores pt-2">
-                <DonutChart score={sevenScore[0].price}/>
+                <div className="seven-scores">
+                <DonutChart score={sevenScore[0].price } />
                 <DonutChart score={sevenScore[0].growth}/>
                 <DonutChart score={sevenScore[0].cashflow}/>
                 <DonutChart score={sevenScore[0].scale}/>

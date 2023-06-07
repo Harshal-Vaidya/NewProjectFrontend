@@ -1,8 +1,8 @@
 import { API } from "../../backend";
 
 //get all companies
-export const getData = () => {
-    return fetch(`${API}/getData`, {method: "GET"})
+export const getData = companyName => {
+    return fetch(`${API}/getData/${companyName}`, {method: "GET"})
       .then(response => {
         return response.json();
       })
